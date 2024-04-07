@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: hsl(293, 61%, 29%);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 320px; /* Increased width for better spacing */
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: black;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 16px); /* Adjusted width to accommodate padding and border */
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: hsl(293, 61%, 29%);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: hsl(293, 61%, 29%);
+            
+        }
+
+        .error-message {
+            color: rgb(193, 112, 112);
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center; /* Center align the error message */
+        }
+
+        .signup-form {
+            text-align: center; /* Center align the signup form */
+            margin-top: 15px; /* Add margin to the top of the signup form */
+        }
+
+        .signup-form input[type="submit"] {
+            background-color: #000000; /* Change button color for signup */
+        }
+
+        .signup-form input[type="submit"]:hover {
+            background-color: #000000; /* Change button color on hover for signup */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="{% url 'music:login' %}" method="post">
+            {% csrf_token %}
+            {% if error_message %}
+                <p class="error-message">{{ error_message }}</p>
+            {% endif %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <form class="signup-form" action="{% url 'music:signup' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Sign up">
+        </form>
+    </div>
+</body>
+</html>
